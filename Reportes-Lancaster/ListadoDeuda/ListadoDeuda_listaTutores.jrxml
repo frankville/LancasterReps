@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDeuda_listaTutores" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="cb4f1f3b-a898-4ac1-ac4b-9468a33ce58b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="suc1" class="java.lang.Integer"/>
+	<parameter name="year1" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/ListadoDeuda/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select T.idtutor, T.nomtut, T.aptut from tutores T inner join deudores D on T.idtutor
+= D.rf order by aptut, nomtut;]]>
+	</queryString>
+	<field name="idtutor" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomtut" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="aptut" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="168" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="0866e952-fcb8-4bd4-bead-9aeb72f8731f" positionType="Float" x="302" y="131" width="233" height="26" forecolor="#CE6B6B"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="28651d10-cc7e-40f4-aeab-6627cde640ab" x="352" y="20" width="100" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nomtut}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1034a370-528d-4f84-8429-fc0ac618b218" x="279" y="20" width="61" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{aptut}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="55201e97-8a2c-444f-903e-ab5c92d4772c" x="340" y="20" width="12" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[,]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="c310aea9-d578-4ef0-a11d-b0abf0f3c1d3" positionType="Float" x="0" y="90" width="555" height="36"/>
+				<subreportParameter name="rf2">
+					<subreportParameterExpression><![CDATA[$F{idtutor}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="suc2">
+					<subreportParameterExpression><![CDATA[$P{suc1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year2">
+					<subreportParameterExpression><![CDATA[$P{year1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_cuadroMeses.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="7b29773b-d38c-4809-b948-4eb93337a68b" positionType="Float" x="21" y="40" width="242" height="40"/>
+				<subreportParameter name="rf3">
+					<subreportParameterExpression><![CDATA[$F{idtutor}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_alumnosACargo.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="6a6cee48-f80f-4977-bbba-270d717e580e" x="0" y="0" width="555" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsable Financiero]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="b6cd9eae-5e5d-4bd6-bf41-20786ef48d04" positionType="Float" x="54" y="163" width="450" height="1" forecolor="#BBBBBB"/>
+			</line>
+			<textField>
+				<reportElement uuid="b35be503-c590-4b7a-bce1-092eca40ea82" x="78" y="20" width="72" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idtutor}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="31167b33-3f0e-4e40-b671-369f36f8219a" positionType="Float" x="447" y="131" width="88" height="26"/>
+				<subreportParameter name="suc8">
+					<subreportParameterExpression><![CDATA[$P{suc1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year8">
+					<subreportParameterExpression><![CDATA[$P{year1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf8">
+					<subreportParameterExpression><![CDATA[$F{idtutor}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_totalDeudaRF.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement uuid="867a2de6-95c2-4b18-a787-9f17b18beb2d" positionType="Float" x="392" y="136" width="40" height="17" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{year1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="98f2a34f-619e-4e96-bb82-d7f00c445868" positionType="Float" x="302" y="136" width="90" height="17" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Deuda total]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="a860cecb-e25d-4fe3-986e-ad6c8dd951f1" positionType="Float" x="314" y="40" width="221" height="40"/>
+				<subreportParameter name="idtutor2">
+					<subreportParameterExpression><![CDATA[$F{idtutor}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_infoContacto.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="8a94c54d-4339-4f91-8932-db5a3e0b4068" x="150" y="20" width="129" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido y nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fb91003f-43e9-42e8-8d17-e3ea4870c79a" x="41" y="20" width="37" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[D.N.I.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

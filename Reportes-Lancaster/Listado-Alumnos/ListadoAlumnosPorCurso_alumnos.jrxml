@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoAlumnosPorCurso_alumnos" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ace5120e-7d89-42ce-9988-963627cb80e7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="suc" class="java.lang.String"/>
+	<parameter name="curs" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/Listado-Alumnos/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT P.suc_period, P.cursoperiod,A.dni,A.nom_al,A.ap_al FROM alumnos A, periodalu P WHERE A.dni = P.alum AND P.cursoperiod = $P{curs}
+ AND P.suc_period = $P{suc} AND P.yearperiod = YEAR(CURDATE()) AND (P.fechbaja IS NULL OR P.fechbaja >= CURDATE()) AND P.borrado = 0;]]>
+	</queryString>
+	<field name="suc_period" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cursoperiod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dni" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nom_al" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ap_al" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="dni">
+		<groupExpression><![CDATA[$F{dni}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e219bf92-0b7b-4bd2-a2e5-ebea497886f4" x="0" y="2" width="101" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[D.N.I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fdb9d174-c166-4ed6-bc6a-ec82d1a04fba" x="101" y="0" width="149" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ad50ce5f-f424-499b-8ee7-cf3dd13078b8" x="250" y="2" width="125" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement uuid="8caa9c82-18b0-478f-9cb6-85a59dc366f2" x="0" y="0" width="100" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="86bd199c-a6ea-47be-bacb-da596d7460c0" x="100" y="0" width="150" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_al}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6e5247cb-c5bb-439f-869a-b4f3714e1d76" x="250" y="0" width="125" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ap_al}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="23" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="d3ccd74f-3a09-41f7-9288-59480c3f0b96" x="273" y="0" width="200" height="23"/>
+				<subreportParameter name="suc">
+					<subreportParameterExpression><![CDATA[$F{suc_period}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="curs">
+					<subreportParameterExpression><![CDATA[$F{cursoperiod}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"ListadoAlumnosPorCurso_cantAlumnsEnUnCurso.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

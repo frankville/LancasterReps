@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reciboLancasterCopia2_cuotasymatdid" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="cda1bb0c-79d6-4e27-a8eb-a4b03c3a03d7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idrec" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="rf" class="java.lang.Integer"/>
+	<parameter name="idsuc" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/ReciboLancaster/"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select  1;]]>
+	</queryString>
+	<field name="1" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="49" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="358289f3-e598-42a0-b9c1-a08bb602a14c" x="0" y="0" width="555" height="24"/>
+				<subreportParameter name="idrec">
+					<subreportParameterExpression><![CDATA[$P{idrec}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA["./"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf3">
+					<subreportParameterExpression><![CDATA[$P{rf}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idsuc3">
+					<subreportParameterExpression><![CDATA[$P{idsuc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reciboLancasterCopia2_lineasrecibo.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="3e899fe6-33a7-4e92-b254-2bcd2d24d08d" positionType="Float" x="0" y="24" width="555" height="22"/>
+				<subreportParameter name="idrec">
+					<subreportParameterExpression><![CDATA[$P{idrec}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA["./"]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reciboLancasterCopia2_lineasrecibo_lineasmatdids.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

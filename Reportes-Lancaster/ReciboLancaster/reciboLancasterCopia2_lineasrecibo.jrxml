@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reciboLancasterCopia2_lineasrecibo" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b68c6d4c-791b-4d28-aa40-f74f0890305d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idrec" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="rf3" class="java.lang.Integer"/>
+	<parameter name="idsuc3" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[(SELECT L.idrecib,L.cuota, L.ciclolectivo, L.monto FROM lineasreciboctas L where L.idrecib = $P{idrec});]]>
+	</queryString>
+	<field name="idrecib" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cuota" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ciclolectivo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="monto" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement uuid="490f0110-95ba-4e8f-9238-2f23e2e67368" x="263" y="4" width="64" height="22" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getCurrencyInstance().format($F{monto})]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="a9d6f012-63e8-4e87-bdf8-8d1b9526dce0" x="327" y="4" width="51" height="22"/>
+				<subreportParameter name="rf4">
+					<subreportParameterExpression><![CDATA[$P{rf3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="suc4">
+					<subreportParameterExpression><![CDATA[$P{idsuc3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idrec3">
+					<subreportParameterExpression><![CDATA[$F{idrecib}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes4">
+					<subreportParameterExpression><![CDATA[$F{cuota}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year4">
+					<subreportParameterExpression><![CDATA[$F{ciclolectivo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reciboLancasterCopia2_lineasrecibo_saldoCuota.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="0c7096bb-2afa-4f7f-bd75-e345ed2a760a" x="0" y="4" width="207" height="22"/>
+				<subreportParameter name="mes5">
+					<subreportParameterExpression><![CDATA[$F{cuota}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year5">
+					<subreportParameterExpression><![CDATA[$F{ciclolectivo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reciboLancasterCopia2_lineasrecibo_saldoCuota_nombreCuota.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

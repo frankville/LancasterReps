@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reciboLancasterCopia2_lineasrecibo_saldoCuota" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d966d78d-2c15-40d3-bd33-3f6bd4540666">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idrec3" class="java.lang.Integer"/>
+	<parameter name="rf4" class="java.lang.Integer"/>
+	<parameter name="suc4" class="java.lang.Integer"/>
+	<parameter name="mes4" class="java.lang.Integer"/>
+	<parameter name="year4" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[{call sp_saldo($P{mes4},$P{year4},$P{suc4},$P{rf4})};]]>
+	</queryString>
+	<field name="saldo" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="0b3abf49-8109-4b1a-b270-511fdd6cc18a" x="0" y="0" width="43" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[( Saldo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="00e97e9c-4a54-47bf-bc19-b23f96cf509b" x="43" y="0" width="53" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getCurrencyInstance().format($F{saldo})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2a4c10e5-a238-4edd-9796-11de77511ce5" x="96" y="0" width="11" height="20" forecolor="#C0C0C0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[)]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteIngresosMensuales" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="56bf1aeb-d7a3-4d90-9bc8-c3979fdce703">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/RecaudacionDiariaChart/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mes" class="java.lang.Integer"/>
+	<parameter name="ciclolectivo" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT IF($P{mes}=0,CONCAT("Inscripción ",$P{ciclolectivo}),DATE_FORMAT(DATE(CONCAT_WS('-',$P{ciclolectivo},$P{mes},01)),'%M %Y') ) AS concepto, S.ID_suc, S.nombre FROM sucursales S]]>
+	</queryString>
+	<field name="concepto" class="java.lang.String"/>
+	<field name="ID_suc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement uuid="d0e432da-53af-4a8c-bbdb-05d5f7ce93a4" x="0" y="0" width="555" height="64" forecolor="#F80303" backcolor="#F6F6FE"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="6f9b1c56-62b9-4f97-a145-4e8814b2d710" x="62" y="7" width="94" height="28"/>
+				<textElement>
+					<font fontName="Fondamento" size="20"/>
+				</textElement>
+				<text><![CDATA[Lancaster]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2cbf77cd-1ca0-4bf4-8c15-3045f89d76a6" x="234" y="3" width="89" height="25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Informe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="71b681a6-bfb8-4697-9f15-f30e091e14be" x="188" y="28" width="182" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ingresos y Deuda]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement uuid="d6d4b187-b053-4f17-9e41-b530a332cb3d" x="234" y="44" width="89" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{concepto}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement uuid="2dc322de-f12b-4219-aa01-95f0824a9d64" x="430" y="6" width="98" height="20"/>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="74a44da9-dd62-48d1-84d3-8223257f8810" x="430" y="6" width="98" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a6b07284-6b08-4b2e-80ab-80d37fd5d6a8" x="62" y="35" width="94" height="20"/>
+				<textElement>
+					<font fontName="Fondamento" size="10"/>
+				</textElement>
+				<text><![CDATA[Institute of English]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement uuid="a9b61048-e4f9-4d6f-b43b-8e46985a409e" x="62" y="12" width="80" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c31c6cb2-0b79-4d68-aaee-49cdd1e71ca6" x="0" y="12" width="62" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sucursal]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="107" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="fabe91ca-3e35-46e3-82fe-71c11d679926" x="0" y="0" width="514" height="106"/>
+				<subreportParameter name="suc_s1">
+					<subreportParameterExpression><![CDATA[$F{ID_suc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ciclolectivo_s1">
+					<subreportParameterExpression><![CDATA[$P{ciclolectivo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes_s1">
+					<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ReporteIngresosMensuales_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

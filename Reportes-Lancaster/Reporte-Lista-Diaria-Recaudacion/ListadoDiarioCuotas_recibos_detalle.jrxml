@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDiarioCuotas_recibos_detalle" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="693a7df5-e5fe-41c3-88f2-4d38b69f5dd5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idrec" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[(SELECT L.idrecib, CONCAT_WS(" ",M.descr,L.ciclolectivo) AS descr, L.monto FROM lineasreciboctas L, (SELECT 0 AS idmes ,"Inscripción" AS descr UNION (SELECT 3,"Cuota marzo") UNION (SELECT 4,"Cuota abril")
+UNION (SELECT 5,"Cuota mayo") UNION (SELECT 6,"Cuota junio") UNION (SELECT 7,"Cuota julio")
+UNION (SELECT 8,"Cuota agosto") UNION (SELECT 9,"Cuota septiembre") UNION (SELECT 10,"Cuota octubre")
+ UNION (SELECT 11,"Cuota noviembre") UNION (SELECT 12,"Cuota diciembre")) AS M WHERE L.idrecib = $P{idrec} AND L.cuota = M.idmes)
+UNION
+(SELECT LL.idrec, CONCAT_WS(' ',MM.tipo_md,MM.nombre_md,"(cód. ejem: ",LL.cod_ej,")") AS descr, LL.importe AS monto
+FROM lineasrecmatdid LL, mats_didacticos MM, ejemplares_md E
+ WHERE LL.idrec = $P{idrec} AND LL.matdid_rec = MM.idmatdid
+ AND MM.idmatdid = E.matdid);]]>
+	</queryString>
+	<field name="idrecib" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descr" class="java.lang.String"/>
+	<field name="monto" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c4812cd9-5ca5-4c4b-a02c-3ad2ae3a584b" x="0" y="6" width="268" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detalle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a468bfae-6534-4420-be99-72fe4e603f50" x="268" y="6" width="123" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement uuid="8d5c4d80-32db-4c34-bfd5-335854791340" x="0" y="0" width="268" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4195c726-e53f-4032-b101-123a6f622812" x="268" y="0" width="123" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getCurrencyInstance().format($F{monto})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="38" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="25db5e74-4eee-4740-a9b4-6749ff7b41fc" x="289" y="0" width="185" height="35"/>
+				<subreportParameter name="idreciboo">
+					<subreportParameterExpression><![CDATA[$F{idrecib}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["ListadoDiarioCuotas_recibos_detalle_subtotal.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

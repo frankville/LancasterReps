@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ResumenDeuda_recEspInscrip" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="86715322-b494-4669-84c5-b913048fe912">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="year2" class="java.lang.Integer"/>
+	<parameter name="suc2" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[{call sp_recaudacionEsperadaInscripcionRS($P{year2},$P{suc2})};]]>
+	</queryString>
+	<field name="result" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e9e0eb89-db8d-470d-affe-00487aa29aef" x="48" y="0" width="64" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Inscripcion]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9595dabe-5860-4aa3-9a86-5d02fd0eebed" x="112" y="0" width="48" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{year2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="124" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="27950395-bbcb-497a-8a39-01b65aa5d8c6" x="0" y="1" width="53" height="20"/>
+				<textElement/>
+				<text><![CDATA[Estimado]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="3c038349-249d-4b8f-b61b-edd2911ecdfd" x="0" y="21" width="200" height="100"/>
+				<subreportParameter name="suc3">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="recEsp">
+					<subreportParameterExpression><![CDATA[$F{result}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year3">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ResumenDeuda_recEspInscrip_deudaTotInscrip.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement uuid="9cab8ecb-acbd-4927-8c71-e23d74e6027f" x="53" y="1" width="59" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{result}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

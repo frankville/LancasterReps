@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDiarioCuotas_total_dia" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="cfa01d9a-cc7f-4eb2-bf44-b590b04d3bd6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="suc" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tz3" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT (totctas.ctas + totmd.md) AS total FROM (SELECT IF(SUM(L.monto) >0, SUM(L.monto),0) AS ctas FROM recibos R, lineasreciboctas L WHERE L.idrecib = R.idrecibo AND   R.fechrec = DATE(CONVERT_TZ(NOW(),'+00:00',$P{tz3})) AND R.anulado = 0 AND R.idsuc = $P{suc}) AS totctas, (SELECT IF(SUM(L.importe) > 0, SUM(L.importe),0) AS md FROM recibos R, lineasrecmatdid L WHERE L.idrec = R.idrecibo AND   R.fechrec = DATE(CONVERT_TZ(NOW(),'+00:00',$P{tz3})) AND R.anulado =0 AND R.idsuc = $P{suc}) AS totmd]]>
+	</queryString>
+	<field name="total" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField pattern="">
+				<reportElement uuid="ae6c7686-7d50-4905-898f-0bc145689f84" x="0" y="0" width="68" height="22"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getCurrencyInstance().format($F{total})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

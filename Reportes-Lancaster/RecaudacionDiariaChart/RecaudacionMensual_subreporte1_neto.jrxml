@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RecaudacionMensual_subreporte1_neto" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2de447b8-3973-4434-9a1e-46c1c58f4a33">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tot_recaudacion" class="java.math.BigDecimal"/>
+	<parameter name="tot_egresos" class="java.math.BigDecimal"/>
+	<parameter name="neto" class="java.math.BigDecimal"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/RecaudacionDiariaChart/"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select 1;]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="219" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="fa51d11d-503e-4358-a32c-8407f5b6c9e3" x="38" y="97" width="113" height="26"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Egresos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b7985bf-a36d-4961-bcbf-97c9fcbf9edb" x="0" y="0" width="287" height="22"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ganancia Neta Aproximada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eb9db6a9-d353-4171-80b4-921947e626e0" x="156" y="67" width="141" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="47a57513-39ab-461c-a295-0c615a0abb1f" x="37" y="42" width="113" height="25"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total ingresos]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="077a432c-c00f-4080-bdf1-064ffb56fa8b" x="25" y="137" width="272" height="1"/>
+			</line>
+			<textField evaluationTime="Auto">
+				<reportElement uuid="b0e86090-daa0-409d-86d6-ce9dc093fac6" x="156" y="42" width="141" height="25"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tot_recaudacion}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement uuid="c3ade205-5c0a-4893-843f-7c2f7681b813" x="156" y="97" width="141" height="26"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tot_egresos}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement uuid="27758bfe-29a0-400b-b4c9-2de6119f0657" x="156" y="155" width="141" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{neto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

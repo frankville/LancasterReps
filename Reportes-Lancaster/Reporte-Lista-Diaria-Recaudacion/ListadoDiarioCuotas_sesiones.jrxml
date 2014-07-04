@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDiarioCuotas_sesiones" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="7c0e7701-2765-4f06-b563-ca0c7e25e15c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/Reporte-Lista-Diaria-Recaudacion/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="suc" class="java.lang.Integer"/>
+	<parameter name="tz1" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM sesiones S WHERE S.sucsesion = $P{suc} AND S.finicio = DATE(CONVERT_TZ(NOW(),'+00:00',$P{tz1})) ORDER BY hinicio;]]>
+	</queryString>
+	<field name="idsesion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="finicio" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hinicio" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cajainic" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cajafinal" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sucsesion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fcierre" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hcierre" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="174" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="c1f0b9c2-c38f-4e76-876a-61083db7e5ea" x="0" y="70" width="555" height="99"/>
+				<subreportParameter name="fechasesion">
+					<subreportParameterExpression><![CDATA[$F{finicio}.toString()]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idsuc">
+					<subreportParameterExpression><![CDATA[$F{sucsesion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="horainicio">
+					<subreportParameterExpression><![CDATA[$F{hinicio}.toString()]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tz11">
+					<subreportParameterExpression><![CDATA[$P{tz1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="horafin">
+					<subreportParameterExpression><![CDATA[$F{hcierre}.toString()]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="caja_inic">
+					<subreportParameterExpression><![CDATA[$F{cajainic}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["ListadoDiarioCuotas_recibos.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="dbada503-e50a-454e-acda-ac92d4ab1f58" x="10" y="11" width="35" height="15"/>
+				<textElement/>
+				<text><![CDATA[Sesion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7d7fb068-f46b-4123-bca2-c3a80b6fb243" x="19" y="27" width="71" height="20"/>
+				<textElement/>
+				<text><![CDATA[usuario]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d0359627-7f05-48e7-b189-df2d5e93b700" x="19" y="46" width="71" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{usuario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a91c25d1-2667-4fe1-afef-259df6c6c617" x="150" y="27" width="65" height="20"/>
+				<textElement/>
+				<text><![CDATA[cajainic]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="bc718400-c6f4-4df7-8823-67be9e0cd104" x="150" y="46" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cajainic}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3eae9d13-d11c-45bf-a2a3-43ecc908065b" x="215" y="26" width="73" height="20"/>
+				<textElement/>
+				<text><![CDATA[cajafinal]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d5e0e6e8-9c21-4966-a49d-0aeaacf78317" x="215" y="46" width="73" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cajafinal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3cb22aec-7be1-431d-8b35-ad0889487bbe" x="288" y="26" width="60" height="20"/>
+				<textElement/>
+				<text><![CDATA[hcierre]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e71535c3-2420-4808-81bd-5daafd6261fd" x="288" y="46" width="60" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hcierre}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ef22f7d9-5f27-495d-8e0d-37b2750b21a6" x="90" y="27" width="60" height="20"/>
+				<textElement/>
+				<text><![CDATA[hinicio]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3cf580de-f733-4d68-9528-b52af169897f" x="90" y="46" width="60" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hinicio}.toString()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

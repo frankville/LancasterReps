@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDeuda_listaTutores_cuadroMeses" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="88703616-c846-43ca-8ec1-68fe93c94397">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="suc2" class="java.lang.Integer"/>
+	<parameter name="year2" class="java.lang.Integer"/>
+	<parameter name="rf2" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/ListadoDeuda/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 1;]]>
+	</queryString>
+	<field name="1" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="67" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="4165c7db-3562-402e-a7ce-4ed81e13fe30" x="8" y="34" width="49" height="23" forecolor="#FFFD90" backcolor="#FFFD90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="ae3a8704-2f76-47ea-ac67-d4ecd3551a8d" x="8" y="14" width="49" height="20" forecolor="#E69898" backcolor="#E69898"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="25e701cf-6c09-49a3-835f-ba2acc5a3cce" x="498" y="34" width="49" height="23" forecolor="#FFFD90" backcolor="#FFFD90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="41ecca06-f13b-4452-ac9e-f61ee7357f1e" x="400" y="34" width="49" height="23" forecolor="#FFFD90" backcolor="#FFFD90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="964d77ba-b86c-466e-9f0b-ba6c1effd983" x="302" y="34" width="49" height="23" forecolor="#FFFD90" backcolor="#FFFD90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="bdd44d89-9ac2-44b5-ad81-20b486af40a6" x="204" y="34" width="49" height="23" forecolor="#FFFD90" backcolor="#FFFD90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="10687211-d583-4644-822b-06eaf3be989f" x="106" y="34" width="49" height="23" forecolor="#FFFD90" backcolor="#FFFD90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="e4f33b9b-68a7-4693-9fc4-0a18be35ee8b" x="449" y="34" width="49" height="23" forecolor="#EFFF00" backcolor="#F3FF00"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="baa55d11-c9e9-4254-a531-fd320ed712a3" x="351" y="34" width="49" height="23" forecolor="#EFFF00" backcolor="#F3FF00"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="03570021-d2ba-453e-96e5-243d7c6c6b27" x="253" y="34" width="49" height="23" forecolor="#EFFF00" backcolor="#F3FF00"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="9e314701-bb8a-437a-9b7f-98c2b109b00b" x="155" y="34" width="49" height="23" forecolor="#EFFF00" backcolor="#F3FF00"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="c1c7da41-2ca8-4f68-a3c2-0b4b9f8dbc4d" x="57" y="34" width="49" height="23" forecolor="#EFFF00" backcolor="#F3FF00"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="1b6d427a-fd1f-4eeb-ab12-ad003ee30962" x="498" y="14" width="49" height="20" forecolor="#E69898" backcolor="#E69898"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="1958008d-0c61-4659-827f-700de89464a1" x="400" y="14" width="49" height="20" forecolor="#E69898" backcolor="#E69898"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="7a27b93c-3700-41a0-8aed-c0e3a2cf7c3b" x="302" y="14" width="49" height="20" forecolor="#E69898" backcolor="#E69898"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="cc150bb6-2106-4613-a10f-b07ff5649348" x="204" y="14" width="49" height="20" forecolor="#E69898" backcolor="#E69898"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="3b9e0380-4aa4-49b5-85a9-a86f75681526" x="106" y="14" width="49" height="20" forecolor="#E69898" backcolor="#E69898"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="f9de547a-497f-4d27-8f83-ec2fd7c0e3ee" x="8" y="14" width="49" height="20" forecolor="#423E3E"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inscr]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="896db4e7-bf3e-4165-b067-bac6aca2b050" mode="Opaque" x="57" y="14" width="49" height="20" forecolor="#423E3E" backcolor="#D31414"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[mar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0da42b3b-02d5-46c0-95bb-fad0c4a68406" x="106" y="14" width="49" height="20" forecolor="#423E3E"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[abr]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="237cf04c-4c84-4029-bda8-5600ebd980ee" mode="Opaque" x="155" y="14" width="49" height="20" forecolor="#423E3E" backcolor="#D31414"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[may]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b8d63bc1-7555-43b0-887a-f7ac0e93709e" x="204" y="14" width="49" height="20" forecolor="#423E3E"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[jun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0209f5a0-5e0b-47d4-9bf8-2096f0ce588d" mode="Opaque" x="253" y="14" width="49" height="20" forecolor="#423E3E" backcolor="#D31414"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[jul]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0f3c0c67-bc7f-4a73-aaf5-f6714fa7b346" x="302" y="14" width="49" height="20" forecolor="#423E3E"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="94b67332-70f4-4714-acf6-aae7ed9da3c3" mode="Opaque" x="351" y="14" width="49" height="20" forecolor="#423E3E" backcolor="#D31414"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[sep]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ed1f8cef-20e5-4416-a95e-dcb6f05e33d4" x="400" y="14" width="49" height="20" forecolor="#423E3E"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[oct]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2c12b58f-063a-4fd2-959c-ae527dc26709" mode="Opaque" x="449" y="14" width="49" height="20" forecolor="#423E3E" backcolor="#D31414"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[nov]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="4add8995-0a59-471e-b069-5649c18eecda" x="57" y="34" width="49" height="23"/>
+				<subreportParameter name="mes2">
+					<subreportParameterExpression><![CDATA[3]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf2">
+					<subreportParameterExpression><![CDATA[$P{rf2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="suc2">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year2">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_saldoCuota.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="cba942f8-8189-4cbe-a041-4b7c9fa442a3" x="498" y="14" width="49" height="20" forecolor="#423E3E"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[dic]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="355b4601-9256-4dda-a3ac-c38f37f802fb" x="106" y="34" width="49" height="23"/>
+				<subreportParameter name="suc2">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year2">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes2">
+					<subreportParameterExpression><![CDATA[4]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf2">
+					<subreportParameterExpression><![CDATA[$P{rf2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_saldoCuota.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="92f38b6b-9961-4732-8b70-0f36bcdda646" x="155" y="34" width="49" height="23"/>
+				<subreportParameter name="suc2">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year2">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes2">
+					<subreportParameterExpression><![CDATA[5]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf2">
+					<subreportParameterExpression><![CDATA[$P{rf2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_saldoCuota.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="2b9f747a-7fd2-4b6f-bedc-8a2fb51a2307" x="204" y="34" width="49" height="23"/>
+				<subreportParameter name="suc2">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year2">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes2">
+					<subreportParameterExpression><![CDATA[6]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf2">
+					<subreportParameterExpression><![CDATA[$P{rf2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_saldoCuota.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="71bb8046-a776-4200-a3cf-d6d5daf8d0cd" x="253" y="34" width="49" height="23"/>
+				<subreportParameter name="suc2">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year2">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes2">
+					<subreportParameterExpression><![CDATA[7]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf2">
+					<subreportParameterExpression><![CDATA[$P{rf2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_saldoCuota.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="a081cc91-11c6-4e5b-90c6-6c2e5465a13b" x="302" y="34" width="49" height="23"/>
+				<subreportParameter name="suc2">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year2">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes2">
+					<subreportParameterExpression><![CDATA[8]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf2">
+					<subreportParameterExpression><![CDATA[$P{rf2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_saldoCuota.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="bdbe5e9d-060f-48b9-aad6-10d7245b6328" x="351" y="34" width="49" height="23"/>
+				<subreportParameter name="suc2">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year2">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes2">
+					<subreportParameterExpression><![CDATA[9]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf2">
+					<subreportParameterExpression><![CDATA[$P{rf2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_saldoCuota.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="3b6ade94-630f-4872-a5a9-9a194593e923" x="400" y="34" width="49" height="23"/>
+				<subreportParameter name="suc2">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year2">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes2">
+					<subreportParameterExpression><![CDATA[10]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf2">
+					<subreportParameterExpression><![CDATA[$P{rf2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_saldoCuota.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="71b47587-9de7-49d8-b18c-cd8d0237e06a" x="449" y="34" width="49" height="23"/>
+				<subreportParameter name="suc2">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year2">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes2">
+					<subreportParameterExpression><![CDATA[11]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf2">
+					<subreportParameterExpression><![CDATA[$P{rf2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_saldoCuota.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="4045635c-477f-41e3-a7c0-978cdd4b553c" x="498" y="34" width="49" height="23"/>
+				<subreportParameter name="suc2">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year2">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes2">
+					<subreportParameterExpression><![CDATA[12]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf2">
+					<subreportParameterExpression><![CDATA[$P{rf2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_saldoCuota.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="705d9e29-8538-420a-9d11-be2baaed538a" x="8" y="34" width="49" height="23"/>
+				<subreportParameter name="year6">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf6">
+					<subreportParameterExpression><![CDATA[$P{rf2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="suc6">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDeuda_listaTutores_cuadroMeses_saldoInscripcion.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

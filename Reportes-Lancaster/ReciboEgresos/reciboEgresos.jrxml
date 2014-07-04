@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reciboEgresos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e966c07d-5d3b-45b8-98a1-1c46207e1869">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idrecibo" class="java.lang.Integer"/>
+	<parameter name="suc" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[(SELECT "Original" AS tipo) UNION (SELECT "Copia" AS tipo)]]>
+	</queryString>
+	<field name="tipo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="250" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="f42e566e-79eb-4343-860f-0a9891f70c4f" x="0" y="37" width="555" height="209"/>
+				<subreportParameter name="recibo">
+					<subreportParameterExpression><![CDATA[$P{idrecibo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idsuc">
+					<subreportParameterExpression><![CDATA[$P{suc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tipoR">
+					<subreportParameterExpression><![CDATA[$F{tipo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reciboEgresos_reciboEstandar.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

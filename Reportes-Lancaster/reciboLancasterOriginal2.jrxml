@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reciboLancaster" language="groovy" pageWidth="595" pageHeight="420" columnWidth="550" leftMargin="45" rightMargin="0" topMargin="20" bottomMargin="20" uuid="163c001c-5263-45b8-a1e0-f76c5e49980d">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="nrorec" class="java.lang.String"/>
+	<field name="dni" class="java.lang.String"/>
+	<field name="nomRF" class="java.lang.String"/>
+	<field name="apRF" class="java.lang.String"/>
+	<field name="desc_linea" class="java.lang.String"/>
+	<field name="monto" class="java.lang.String"/>
+	<field name="total" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
+	<variable name="total" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="184" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="d9df1fd2-509f-4cd7-b600-7d3b41422f0d" x="3" y="19" width="526" height="60"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double" lineColor="#CD1401"/>
+				</graphicElement>
+			</rectangle>
+			<image>
+				<reportElement uuid="8520f0b8-01f2-4025-a3c4-7299a036bcae" x="18" y="26" width="72" height="44"/>
+				<imageExpression><![CDATA["/home/frank/Imágenes/logolancaster.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="4b4fd855-bcd0-48eb-ac44-42a76f1703e9" x="54" y="26" width="113" height="26"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lancaster]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7c456d07-ea4d-4124-950c-92472db8b425" x="54" y="39" width="113" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Institute of English]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a9ce482a-5f43-4692-af2b-70e6ab5fe334" x="354" y="129" width="53" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[; D.N.I. N° ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34606003-b77b-4c48-8f16-6db9cfea519a" x="59" y="149" width="83" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[la suma de pesos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3c3b38a3-889c-465a-a0fc-dcdf90f22437" x="38" y="129" width="104" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Recibí de ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1ff3bd7c-2618-4b91-bd2e-a6afc4f3f695" x="407" y="129" width="97" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="cccc9499-ecd8-4975-8145-bb2779b39dcb" stretchType="RelativeToBandHeight" x="242" y="129" width="112" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomRF}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="24f987f6-d968-42d2-a83e-bfc2b9a660c6" stretchType="RelativeToBandHeight" x="142" y="129" width="89" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apRF}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement uuid="f49d6867-15a3-4ae8-9460-0597ddf52bd0" x="423" y="93" width="101" height="21"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="1a8051d4-3f7b-4dab-acbb-6e16ad5aebd5" x="314" y="25" width="130" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[Tel: +54 (0376) 4258180]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="85821b4a-8936-4331-b964-8db871bb1d01" x="296" y="49" width="168" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[email: contacto@institutelancaster.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="08609798-ba2b-4e61-abaa-f4f6d60acc37" x="282" y="35" width="197" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[sitio web: www.institutolancaster.com]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement uuid="48886c7e-9e7d-4c43-a4fb-01e08b9286c8" x="1" y="90" width="159" height="23"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="779c5877-7267-48a1-9176-41df3a4ccebf" x="265" y="62" width="231" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[dirección: Chacra 152 Mza A Casa 8 (sobre Av Lopez y planes)]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="59536fe3-1482-41a3-8b14-3f3d29e52ae0" x="423" y="95" width="102" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="32a4a2d0-2355-44d2-b854-be9e1eba7db9" x="79" y="90" width="78" height="24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nrorec}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b7f571cd-3799-438c-a80e-688f78d3c206" x="3" y="90" width="79" height="24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibo N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5a42d14f-4660-42aa-a3f4-7049d107685d" x="231" y="129" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[,]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a46a246b-ca93-44a8-9e40-116f352612f7" positionType="Float" x="143" y="149" width="39" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().format(Double.parseDouble($F{total}.toString()))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5748bd6c-3c62-445b-8906-6334a5c6c440" positionType="Float" x="182" y="149" width="85" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[ en concepto de:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="d1f68507-edf3-4eb3-9fee-a23364157a8c" x="7" y="181" width="515" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="0c8d9748-bbd2-4350-9348-4a3c7e247695" x="259" y="94" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="664e45fa-b85b-4d9c-ab45-8f42786f7e94" x="56" y="50" width="108" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SPEPM 242 - Resol CGE N° 3743/90]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="97c01809-852a-4a51-becb-19c1667d3076" x="429" y="0" width="21" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8d94c4cc-b75b-4e83-aad9-8eadda95efc7" x="450" y="0" width="105" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="829fa0b1-42b7-4758-9511-d3e9f6af3835" stretchType="RelativeToTallestObject" x="1" y="0" width="428" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{desc_linea}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2227cd18-8074-499f-bcab-3c650ba13045" positionType="Float" x="99" y="0" width="179" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[.........................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3425e70b-96df-47ba-b98a-b6605293f089" positionType="Float" x="1" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Firma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="de357f66-df65-4db5-8414-1621c8d730f6" x="320" y="0" width="218" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[.................................................................]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

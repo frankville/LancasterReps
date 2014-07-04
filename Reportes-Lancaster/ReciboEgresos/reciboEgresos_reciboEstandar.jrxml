@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reciboEgresos_reciboEstandar" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e8672342-6737-4374-bd06-6f54b3f234c1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="4"/>
+	<parameter name="idsuc" class="java.lang.Integer"/>
+	<parameter name="recibo" class="java.lang.Integer"/>
+	<parameter name="tipoR" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT R.idrecgasto, R.suc_g,R.fech_g, R.nota_egreso FROM recibos_egreso R WHERE R.suc_g = $P{idsuc} AND R.idrecgasto = $P{recibo};]]>
+	</queryString>
+	<field name="idrecgasto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="suc_g" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fech_g" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nota_egreso" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="165" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="c2c0ee20-7baf-441c-b06e-8325f2b5fa22" x="35" y="21" width="475" height="60"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double" lineColor="#1A01CD"/>
+				</graphicElement>
+			</rectangle>
+			<image>
+				<reportElement uuid="ce4cd4dc-6290-483b-9e8c-b902f06edfc1" x="42" y="27" width="53" height="51"/>
+				<imageExpression><![CDATA["./logolancaster.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="f7a8e175-92fe-42be-abf3-d3b0c10556a2" x="240" y="65" width="231" height="17" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[dirección: Chacra 152 Mza A Casa 8 (sobre Av Lopez y planes)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0e44f500-99d0-4e38-ba72-e5e1bc6c794b" x="86" y="41" width="113" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Institute of English]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="726936b5-084d-4c50-b75e-38862012fe2e" x="271" y="52" width="168" height="15" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[email: contacto@institutolancaster.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bdcd07b7-e73e-4ecc-9c8a-743d5bdfa91b" x="88" y="52" width="108" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SPEPM 242 - Resol CGE N° 3743/90]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0801f2a0-b1ee-4286-a229-6f06615d9573" x="86" y="28" width="113" height="26" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lancaster]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c0f400fb-de74-4003-a051-da3aa3299ccf" x="289" y="28" width="130" height="12" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[Tel: +54 (0376) 4258180]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aadad33d-17f8-4147-aaf5-14d2e788bd51" x="257" y="38" width="197" height="15" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[sitio web: www.institutolancaster.com]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a075f678-3500-45f5-95b7-30914f96736b" x="242" y="92" width="100" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tipoR}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement uuid="6a928906-fa2d-40d1-be3a-1dd2ff6f7111" x="35" y="87" width="159" height="23" forecolor="#C0C0C0"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="fd50d907-d8e7-4224-8a4d-93219b9cb6e5" x="37" y="87" width="79" height="24" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibo N°]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="27524269-80c8-487a-9d1f-b3f42c6c8844" x="113" y="87" width="78" height="24" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%07d", $F{idrecgasto})]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement uuid="0dca4089-6542-48e4-863c-e8b546dc2291" x="410" y="89" width="101" height="21" forecolor="#C0C0C0"/>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="76a5872b-792f-45b9-8977-95e452dee038" x="410" y="90" width="102" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fech_g}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="12fe1bf3-9b34-48a8-903b-5aad44084af5" x="60" y="118" width="339" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Recibí de Mahiquez, María Inés; D.N.I.: 14114235 la suma de pesos]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="52f98d43-510a-411f-b362-f780ac08a7bc" x="399" y="118" width="75" height="20"/>
+				<subreportParameter name="idrec_g">
+					<subreportParameterExpression><![CDATA[$P{recibo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reciboEgresos_reciboEstandar_totalEgreso.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="7ae8bde3-2469-453a-8e20-357c2d90ab44" x="60" y="138" width="100" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[en concepto de]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="533d5930-a778-4677-9780-548a38445c5b" x="59" y="163" width="428" height="1" forecolor="#C0C0C0"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="177" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="1fede36b-038b-44f3-80a0-34a3bd293594" positionType="Float" x="60" y="155" width="56" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Firma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5c31b65c-1dcd-41bf-92dc-ab104ebf5214" positionType="Float" x="116" y="155" width="179" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[.........................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5130cf95-6aa5-4f28-b17d-41267e100ab5" x="304" y="155" width="183" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[...................................................]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="5fb4efeb-1d7e-4a4a-9e16-3756b8f6575e" x="60" y="3" width="428" height="90"/>
+				<subreportParameter name="recg">
+					<subreportParameterExpression><![CDATA[$P{recibo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reciboEgresos_reciboEstandar_detalle.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="80ad67c1-5a73-40c9-8bfe-41aebc628bf1" x="60" y="93" width="36" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nota: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b3b039d4-5650-45ba-906f-86334c45a43a" x="60" y="113" width="428" height="33" forecolor="#C0C0C0"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+					<paragraph firstLineIndent="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota_egreso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

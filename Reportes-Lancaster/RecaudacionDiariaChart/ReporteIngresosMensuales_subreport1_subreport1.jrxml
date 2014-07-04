@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteIngresosMensuales_subreport1_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="cb240e5c-66d9-422f-afc9-bbb85095b197">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="suc_s2" class="java.lang.Integer"/>
+	<parameter name="ciclolectivo_s2" class="java.lang.Integer"/>
+	<parameter name="mes_s2" class="java.lang.Integer"/>
+	<parameter name="recEsp" class="java.lang.Double"/>
+	<queryString>
+		<![CDATA[(SELECT "Recaudación Efectiva" AS concepto, SUM(L.monto) AS monto FROM
+ lineasreciboctas L, recibos R WHERE L.cuota = $P{mes_s2} AND L.ciclolectivo = $P{ciclolectivo_s2}
+ AND R.idrecibo = L.idrecib AND R.idsuc = $P{suc_s2} AND R.anulado = 0)
+UNION
+(SELECT "Deuda" AS concepto, ($P{recEsp} - SUM(L.monto)) AS monto FROM
+ lineasreciboctas L, recibos R WHERE L.cuota = $P{mes_s2} AND L.ciclolectivo = $P{ciclolectivo_s2}
+AND R.idrecibo = L.idrecib AND R.idsuc = $P{suc_s2} AND R.anulado =0)]]>
+	</queryString>
+	<field name="concepto" class="java.lang.String"/>
+	<field name="monto" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="192" splitType="Stretch">
+			<pie3DChart>
+				<chart theme="default.spring">
+					<reportElement uuid="d3c2ef9a-e4bb-47f6-bfb3-1aabe5b5e290" stretchType="RelativeToBandHeight" x="91" y="0" width="346" height="189" isPrintWhenDetailOverflows="true"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{concepto}]]></keyExpression>
+					<valueExpression><![CDATA[$F{monto}]]></valueExpression>
+					<labelExpression><![CDATA[$F{concepto}+": "+NumberFormat.getCurrencyInstance().format($F{monto})]]></labelExpression>
+				</pieDataset>
+				<pie3DPlot labelFormat="" legendLabelFormat="{0}: {2}">
+					<plot orientation="Horizontal">
+						<seriesColor seriesOrder="0" color="#F0FF00"/>
+						<seriesColor seriesOrder="1" color="#FB210C"/>
+					</plot>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+		</band>
+	</summary>
+</jasperReport>

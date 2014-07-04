@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ResumenDeuda_recEspInscrip_deudaTotInscrip" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="1be9b6a7-b42e-4135-bd78-bbbb81aec796">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="suc3" class="java.lang.Integer"/>
+	<parameter name="year3" class="java.lang.Integer"/>
+	<parameter name="recEsp" class="java.math.BigDecimal"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[{call sp_deudaTotalInscripcionRS($P{year3},$P{suc3})};]]>
+	</queryString>
+	<field name="result" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="105" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="5a4d74f6-827f-4c9f-8e5f-5fc22dcbf418" x="0" y="0" width="200" height="100"/>
+				<subreportParameter name="deudaTot">
+					<subreportParameterExpression><![CDATA[$F{result}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="recEsp2">
+					<subreportParameterExpression><![CDATA[$P{recEsp}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ResumenDeuda_recEspInscrip_deudaTotInscrip_graficoRecInscrip.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

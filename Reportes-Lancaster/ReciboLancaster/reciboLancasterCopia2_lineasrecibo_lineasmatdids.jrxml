@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reciboLancasterCopia2_lineasrecibo_lineasmatdids" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c601ece6-96a1-47b8-b9d9-3d46c497417e">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="172"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idrec" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select R.respfinanc,M.idmatdid,M.nombre_md,M.tipo_md,L.cod_ej, L.importe from recibos R inner join lineasrecmatdid L on L.idrec = R.idrecibo and R.idrecibo = $P{idrec} inner join mats_didacticos M on L.matdid_rec = M.idmatdid where idrec = $P{idrec};]]>
+	</queryString>
+	<field name="respfinanc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idmatdid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre_md" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo_md" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cod_ej" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="importe" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement uuid="4da4d7dc-06f7-402b-b3f4-201020e4a0eb" x="269" y="3" width="49" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getCurrencyInstance().format($F{importe})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0354758f-8f80-4c7d-a3f1-5beadb42ead8" x="41" y="3" width="78" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_md}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="153f3be6-f4b8-43d0-b466-0810a908f760" x="0" y="3" width="41" height="20" forecolor="#C0C0C0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_md}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="71e73607-1f67-44c4-9b8f-a0f5052fd165" x="119" y="3" width="55" height="20" forecolor="#C0C0C0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[(cod. ej.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="4141143e-b058-4ab6-a04b-38e63fd6b16d" x="174" y="3" width="43" height="20" forecolor="#C0C0C0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cod_ej}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="866fa61c-2006-4d9c-8a41-9e56d6e447e5" x="318" y="3" width="55" height="20"/>
+				<subreportParameter name="md">
+					<subreportParameterExpression><![CDATA[$F{idmatdid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rf">
+					<subreportParameterExpression><![CDATA[$F{respfinanc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ce">
+					<subreportParameterExpression><![CDATA[$F{cod_ej}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reciboLancasterCopia2_lineasrecibo_lineasmatdids_saldoMatDid.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="d34f728e-ed6f-4517-8399-d2ef87f4a816" x="217" y="3" width="15" height="20" forecolor="#C0C0C0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[)]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

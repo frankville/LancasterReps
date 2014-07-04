@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDiarioCuotas_recibos_recsEgreso" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ecdc6209-9804-4f03-956d-9ee5e163a108">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idsuc_g" class="java.lang.Integer"/>
+	<parameter name="finic" class="java.lang.String"/>
+	<parameter name="hinic" class="java.lang.String"/>
+	<parameter name="hcierre" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/Reporte-Lista-Diaria-Recaudacion/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT R.idrecgasto, R.hora_g,  R.nota_egreso, IF(R.anulado=0, 'No', 'Si') as anulado from recibos_egreso R where R.fech_g = $P{finic} and R.hora_g between $P{hinic} and $P{hcierre} and R.suc_g = $P{idsuc_g} order by idrecgasto;]]>
+	</queryString>
+	<field name="idrecgasto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hora_g" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nota_egreso" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="anulado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="9f359140-d333-492b-8cab-fc9877cb390e" x="228" y="4" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Egresos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ee7694d7-fc8e-4a00-9928-43eaf8934f0c" x="0" y="4" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Serie]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="fa5d2b86-6e88-41ed-8662-24bd4a0d1c56" x="0" y="24" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[String.format("%07d",$F{idrecgasto})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5ca29ef8-ef23-42b3-acd3-5e379da03849" x="100" y="4" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="21382b6e-e4c7-4bc4-bd0c-23627836ef01" x="100" y="24" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hora_g}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="75b9733a-9c0d-4c07-9d46-43693e566214" x="200" y="4" width="255" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nota]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f9cd436b-4c32-4341-b86c-8dedbf008417" x="200" y="24" width="255" height="20"/>
+				<textElement/>
+			</textField>
+			<staticText>
+				<reportElement uuid="3fce0585-c6e7-43b1-bb51-d027e0dcc1fd" x="455" y="4" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Anulado?]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="28f55d37-7c9e-4db2-97b2-074e8b3108c6" x="455" y="24" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anulado}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="6a695909-6bce-4836-9a45-b4f95b471b5e" x="0" y="44" width="555" height="32"/>
+				<subreportParameter name="idrecgasto">
+					<subreportParameterExpression><![CDATA[$F{idrecgasto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ListadoDiarioCuotas_recibos_recsEgreso_detalleEgresos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

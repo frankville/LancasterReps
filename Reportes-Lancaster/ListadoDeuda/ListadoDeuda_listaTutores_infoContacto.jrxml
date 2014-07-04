@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDeuda_listaTutores_infoContacto" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2a6020dd-e6d7-47d9-aeb0-f3e5fc2b73f5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idtutor2" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[{call sp_infoContactoTutor($P{idtutor2})};]]>
+	</queryString>
+	<field name="codArea" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="num" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo_ta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="44" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement uuid="ea44d050-d409-40fd-8ed8-3c066538133f" x="0" y="4" width="187" height="40" forecolor="#BD0000"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="e426c1e1-0c67-48be-b34d-be348783ab1c" x="0" y="2" width="187" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Información de contacto]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c02d7075-efdc-49e6-a53a-a9db8d9f801b" x="58" y="22" width="100" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2b6ac24a-7398-4be5-9f9f-747e927a0009" x="0" y="22" width="58" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[e-mail]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement uuid="688c1763-59cb-4773-bc8b-394576d1a486" x="61" y="2" width="70" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{num}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5184c0ea-e462-4c15-bfb8-5c5697f31cfb" x="131" y="2" width="40" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tipo_ta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4b7aa5ce-572e-40bf-8035-c337ba0ba96a" x="14" y="2" width="44" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codArea}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b20951b0-3291-44b9-b5b2-20cb7d47022c" x="58" y="2" width="3" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d4522a66-fb38-44cb-86fb-3c5999d69724" x="11" y="2" width="3" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[(]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="fbe24330-e442-4358-ba3b-7500c191e53a" x="11" y="26" width="160" height="1" forecolor="#BD0000"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDiarioCuotas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a264f33d-e9ff-4519-a72b-effb327b9293">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="timezone" class="java.lang.String"/>
+	<parameter name="sucursal" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT S.nombre FROM sucursales S WHERE S.ID_suc = $P{sucursal} ORDER BY ID_suc;]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="totalgastos" class="java.lang.Double">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement uuid="78fd07d5-31b9-4b74-81b0-d99f9804abdb" x="0" y="0" width="555" height="48" forecolor="#F80303" backcolor="#F6F6FE"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="1d37ed42-c3c5-4609-a4cc-47b252e6b763" x="62" y="0" width="94" height="28"/>
+				<textElement>
+					<font fontName="Arial" size="20"/>
+				</textElement>
+				<text><![CDATA[Lancaster]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a3fab732-58f0-458b-a311-f942c787d022" x="62" y="28" width="94" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Institute of English]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="17b527ff-c89b-41ab-94d7-af9a8833cae2" x="28" y="0" width="34" height="48"/>
+				<imageExpression><![CDATA["LogoLancaster.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="3708d61e-5e2b-4bad-9b58-fcdc49e632c7" x="234" y="0" width="89" height="25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Informe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8cfde662-6810-4895-afa1-5107ab01f4b0" x="200" y="28" width="155" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Detalle Diario de Recaudación]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="573166be-89a0-4977-a7a9-f826fc23ed59" x="437" y="4" width="103" height="25"/>
+				<subreportParameter name="tz0">
+					<subreportParameterExpression><![CDATA[$P{timezone}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["ListadoDiarioCuotas_fecha.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="b6eef806-afea-4d64-a84a-d0b863120c4d" x="0" y="12" width="289" height="20"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="b44928a6-257e-480a-b288-56f3f6e1044f" x="192" y="12" width="100" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ef21c985-493b-4303-b8f4-f9a9fcc529da" x="14" y="12" width="175" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recaudación del día Sucursal:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e40d449f-cad2-4c36-8b54-78822a342f0d" x="292" y="12" width="218" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="1ffbdbd0-a5be-4709-b8dd-fb0bcaff8f3c" x="510" y="12" width="45" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="162" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="9262738a-c11c-4979-8230-da7ee992a4e6" x="0" y="11" width="555" height="126"/>
+				<subreportParameter name="suc">
+					<subreportParameterExpression><![CDATA[$P{sucursal}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tz1">
+					<subreportParameterExpression><![CDATA[$P{timezone}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["ListadoDiarioCuotas_sesiones.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

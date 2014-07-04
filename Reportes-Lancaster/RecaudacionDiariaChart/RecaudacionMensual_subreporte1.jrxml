@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RecaudacionMensual_subreporte1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f7e5293b-d04c-426c-9436-b8e55df5a7a8">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="182"/>
+	<property name="ireport.y" value="988"/>
+	<parameter name="mes_s1" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/RecaudacionDiariaChart/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="suc_s1" class="java.lang.Integer"/>
+	<parameter name="year_s1" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT R.fechrec, SUM(L.monto) AS totalDia FROM recibos R, lineasreciboctas L
+WHERE R.idrecibo = L.idrecib AND MONTH(R.fechrec) = $P{mes_s1}
+AND YEAR(R.fechrec) = $P{year_s1} AND R.idsuc = $P{suc_s1} AND R.anulado = 0
+GROUP BY fechrec ORDER BY fechrec;]]>
+	</queryString>
+	<field name="fechrec" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalDia" class="java.lang.Double"/>
+	<variable name="tot_recaudacion" class="java.math.BigDecimal" calculation="System"/>
+	<variable name="tot_egresos" class="java.math.BigDecimal" calculation="System"/>
+	<variable name="neto" class="java.math.BigDecimal" resetType="None" calculation="System">
+		<variableExpression><![CDATA[($V{tot_recaudacion} - $V{tot_egresos})]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ee1caa42-be2f-4a53-b8eb-133eaca60463" x="85" y="17" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="af8102e6-d203-4c2d-9c34-ca872727e9b5" x="218" y="17" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[totalDia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="81bcfd7c-a68c-4c6c-80d9-3610205f95a8" x="85" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechrec}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="17a8ba98-69c4-4436-a31a-b7a3e797db40" x="218" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{totalDia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="802" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="793f349a-e861-481d-9f81-a9fb46f0a7e0" positionType="Float" x="31" y="608" width="375" height="181"/>
+			</rectangle>
+			<lineChart>
+				<chart>
+					<reportElement uuid="82e154d3-61b9-4191-8136-1fb724e4035d" x="-14" y="47" width="555" height="255"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Recaudación del mes"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{fechrec}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{totalDia}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot labelRotation="-90.0"/>
+					<categoryAxisFormat labelRotation="-90.0">
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</linePlot>
+			</lineChart>
+			<subreport>
+				<reportElement uuid="1e54f17a-53b9-4def-aaa0-555ca8021073" x="31" y="8" width="200" height="25"/>
+				<subreportParameter name="suc_s2">
+					<subreportParameterExpression><![CDATA[$P{suc_s1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year_s2">
+					<subreportParameterExpression><![CDATA[$P{year_s1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes_s2">
+					<subreportParameterExpression><![CDATA[$P{mes_s1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="tot_rec" toVariable="tot_recaudacion"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "RecaudacionMensual_subreporte1_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="682da7ff-2766-488e-87e1-6654be8a1c02" x="0" y="302" width="526" height="306"/>
+				<subreportParameter name="year_g">
+					<subreportParameterExpression><![CDATA[$P{year_s1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes_g">
+					<subreportParameterExpression><![CDATA[$P{mes_s1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="suc_g">
+					<subreportParameterExpression><![CDATA[$P{suc_s1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="tot_g" toVariable="tot_egresos"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "RecaudacionMensual_subreporte1_gastos.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="eb9db6a9-d353-4171-80b4-921947e626e0" positionType="Float" x="198" y="675" width="141" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="47a57513-39ab-461c-a295-0c615a0abb1f" positionType="Float" x="85" y="651" width="113" height="25"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total ingresos]]></text>
+			</staticText>
+			<textField evaluationTime="Auto">
+				<reportElement uuid="b0e86090-daa0-409d-86d6-ce9dc093fac6" positionType="Float" x="198" y="650" width="141" height="25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getCurrencyInstance().format($V{tot_recaudacion})]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement uuid="c3ade205-5c0a-4893-843f-7c2f7681b813" positionType="Float" x="198" y="704" width="141" height="26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["("+NumberFormat.getCurrencyInstance().format($V{tot_egresos})+")"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7b7985bf-a36d-4961-bcbf-97c9fcbf9edb" positionType="Float" x="74" y="619" width="287" height="22"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ganancia Neta Aproximada]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="077a432c-c00f-4080-bdf1-064ffb56fa8b" positionType="Float" x="74" y="738" width="272" height="1"/>
+			</line>
+			<rectangle radius="10">
+				<reportElement uuid="daf6d8dc-fdb9-4cec-b0f1-1ae60f08d2ac" positionType="Float" x="198" y="748" width="141" height="30" forecolor="#B30707"/>
+			</rectangle>
+			<textField evaluationTime="Report">
+				<reportElement uuid="27758bfe-29a0-400b-b4c9-2de6119f0657" positionType="Float" x="218" y="748" width="100" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getCurrencyInstance().format($V{tot_recaudacion}-$V{tot_egresos})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fa51d11d-503e-4358-a32c-8407f5b6c9e3" positionType="Float" x="85" y="704" width="113" height="26"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Egresos]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

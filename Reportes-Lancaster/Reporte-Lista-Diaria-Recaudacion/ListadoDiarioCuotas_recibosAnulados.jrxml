@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDiarioCuotas_recibosAnulados" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e96e7f87-e2e5-4f46-a99f-75c0277bd5d2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tz2" class="java.lang.String"/>
+	<parameter name="horainicio" class="java.lang.String"/>
+	<parameter name="horafin" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM recibos R WHERE R.anulado = 1 AND R.fechrec = DATE(CONVERT_TZ(NOW(),'+00:00',$P{tz2})) AND R.horarec BETWEEN $P{horainicio} AND $P{horafin};]]>
+	</queryString>
+	<field name="idrecibo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idsuc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechrec" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="horarec" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="respfinanc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nroserie" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="anulado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="29" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement uuid="13e366a7-d119-4767-af6f-1806d659484f" x="29" y="5" width="128" height="20" forecolor="#A40111"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="b8e22e93-5973-4ba6-9d52-e3a27d0361ad" x="33" y="5" width="118" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Recibos Anulados]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="58715d36-d9fa-420d-991d-badefb5bc0ef" x="15" y="10" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[nroserie]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="564029d1-b3cd-40df-826a-c854894cc64d" x="115" y="10" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[fechrec]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e5adb035-9b8c-4c1b-b9d1-9d60a080b4fc" x="215" y="10" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[horarec]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f330cc0a-cdba-4978-a4f1-dde9b9511602" x="315" y="10" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[respfinanc]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="99" splitType="Stretch">
+			<textField>
+				<reportElement uuid="36d30648-fb85-4897-9ab6-803878fd7226" x="15" y="10" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nroserie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b159b404-3bd7-40e0-ba51-6a81bed6f209" x="115" y="10" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechrec}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e0a12585-c989-4301-b00d-9e25cbfad15d" x="215" y="10" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{horarec}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="16756eee-b303-48ae-9885-be01752d80b1" x="315" y="10" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{respfinanc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

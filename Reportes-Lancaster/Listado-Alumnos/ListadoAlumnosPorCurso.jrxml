@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoAlumnosPorCurso" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="201a7f82-62e4-4c26-ae90-8f26dedc58f8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/Lancaster/listadoAlumnos"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8282/jasperserver/services/repository"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/Listado-Alumnos/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT D.suc, C.idcursos, C.nombre FROM cursos C, se_dicta_en D WHERE D.suc = 1 AND
+D.curs = C.idcursos AND D.ciclolectivo_sde = YEAR(CURDATE()) ORDER BY idcursos;]]>
+	</queryString>
+	<field name="suc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idcursos" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement uuid="0e18cba9-8cd8-4339-8fd4-f006aa3f5a6c" x="0" y="0" width="555" height="64" forecolor="#F80303" backcolor="#F6F6FE"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="1a49232e-e735-41f9-a8e9-1801389bb2c0" x="188" y="28" width="182" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Listado de Alumnos por Curso]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="884fca5a-e95d-4e72-83a8-9e61061c9d3b" x="25" y="8" width="37" height="48"/>
+				<imageExpression><![CDATA[$P{SUBREPORT_DIR}+"LogoLancaster.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="89c5e35f-772f-4847-9935-3b213794311f" x="62" y="7" width="82" height="28"/>
+				<textElement>
+					<font fontName="Fondamento" size="20"/>
+				</textElement>
+				<text><![CDATA[Lancaster]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="126f0361-93bd-4326-84fa-0b09500145d5" x="234" y="3" width="89" height="25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Informe]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement uuid="18132d1d-376c-41f2-a165-b92ace855984" x="430" y="6" width="98" height="20"/>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="e0fe5aa4-8157-4f27-a69e-182e24217338" x="424" y="6" width="111" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="44a6bb5f-ce44-4338-a5cb-cbb39c675525" x="62" y="35" width="82" height="20"/>
+				<textElement>
+					<font fontName="Fondamento" size="10"/>
+				</textElement>
+				<text><![CDATA[Institute of English]]></text>
+			</staticText>
+			<textField pattern="MMMMMMMMM">
+				<reportElement uuid="916e8d52-6054-40ce-bf11-f90fc60ffb75" x="188" y="44" width="91" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy">
+				<reportElement uuid="d7b2a264-94a6-41e7-bd80-d2399640bad9" x="291" y="44" width="79" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="63" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="b805bb42-b0af-456f-b8b1-8d909a73fdd5" x="38" y="37" width="392" height="26"/>
+				<subreportParameter name="suc">
+					<subreportParameterExpression><![CDATA[$F{suc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="curs">
+					<subreportParameterExpression><![CDATA[$F{idcursos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"ListadoAlumnosPorCurso_alumnos.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="198f7123-173b-42ff-9d1c-5f59007b9424" x="0" y="17" width="38" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Curso]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement uuid="eb07fc65-690a-4815-b8ea-a6103e69d992" x="38" y="17" width="120" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="2277eb31-6a57-40d6-b5fc-0a4dc09afc70" x="38" y="9" width="480" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#AEA7A7"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement uuid="d14ccb64-a865-4585-bb92-279f33f75868" x="408" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="2c4ec10d-52d9-44c1-be79-42627f34277e" x="488" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="23" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement uuid="49f755b7-5632-4c6e-950e-05b4ba0f39db" x="330" y="0" width="225" height="23"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#C3C3C3"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="7e9f9720-fedc-40f4-8d6f-283175e147cd" x="347" y="0" width="100" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Alumnos]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="4f11fee9-9b9a-4967-9437-211f464544b4" x="447" y="0" width="88" height="23"/>
+				<subreportParameter name="suc">
+					<subreportParameterExpression><![CDATA[$F{suc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"ListadoAlumnosPorCurso_totalAlumns.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

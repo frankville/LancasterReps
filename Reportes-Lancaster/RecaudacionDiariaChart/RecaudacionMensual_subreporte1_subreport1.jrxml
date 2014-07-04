@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RecaudacionMensual_subreporte1_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="404cc645-2562-40eb-9b1b-f6d82ace2b2f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="suc_s2" class="java.lang.Integer"/>
+	<parameter name="mes_s2" class="java.lang.Integer"/>
+	<parameter name="year_s2" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT SUM(L.monto) AS total FROM recibos R, lineasreciboctas L
+WHERE R.idrecibo = L.idrecib AND MONTH(R.fechrec) = $P{mes_s2}
+AND YEAR(R.fechrec) = $P{year_s2} AND R.idsuc = $P{suc_s2} AND R.anulado=0;]]>
+	</queryString>
+	<field name="total" class="java.lang.Double"/>
+	<variable name="tot_rec" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{total}]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="0f465a36-31bd-4e1c-bd6e-deee4d7b1b62" x="0" y="0" width="181" height="20"/>
+				<textElement/>
+				<text><![CDATA[Recaudacion total al dia de la fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="abb46315-16d1-4aa1-8484-50d2f44ed4c9" x="181" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

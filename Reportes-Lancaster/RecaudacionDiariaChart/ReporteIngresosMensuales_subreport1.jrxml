@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteIngresosMensuales_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="6545487a-d428-4f3b-82ab-dd8cb055efd2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mes_s1" class="java.lang.Integer"/>
+	<parameter name="suc_s1" class="java.lang.Integer"/>
+	<parameter name="ciclolectivo_s1" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/RecaudacionDiariaChart/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="concepto_s1" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT IF($P{mes_s1}=0,CONCAT("Inscripción ",$P{ciclolectivo_s1}),DATE_FORMAT(DATE(CONCAT_WS('-',$P{ciclolectivo_s1},$P{mes_s1},01)),'%M %Y') ) AS concepto,SUM(listaNeta.valorNetoCuota) AS recEsperada FROM (SELECT listaCtas.dni, listaCtas.nom_al, listaCtas.ap_al, listaCtas.cursoperiod,
+IF((listaCtas.porcent_b !=NULL OR listaCtas.porcent_b!=0), listaCtas.valorCuota*(1-(listaCtas.porcent_b/100)),
+IF((listaCtas.importe_b!=NULL OR listaCtas.importe_b!=0), listaCtas.valorCuota - listaCtas.importe_b,listaCtas.valorCuota)) AS valorNetoCuota
+
+FROM (SELECT cuotaAlumnos.dni, cuotaAlumnos.nom_al, cuotaAlumnos.ap_al, cuotaAlumnos.cursoperiod, cuotaAlumnos.valorCuota, bonif.importe_b, bonif.porcent_b FROM (SELECT alums.dni, alums.ap_al, alums.nom_al, alums.cursoperiod, alums.fechalta,
+IF($P{mes_s1}=0,IF(alums.fechalta >= aumentoPorCurso.apartirde,
+SDE.valor_inscrip+aumentoPorCurso.valorAumento,SDE.valor_inscrip),
+IF(aumentoPorCurso.valorAumento!=NULL, SDE.precio_cta+aumentoPorCurso.valorAumento,SDE.precio_cta)) AS valorCuota
+FROM (SELECT A.dni,A.ap_al,A.nom_al,P.yearperiod, P.cursoperiod,P.fechalta, P.suc_period
+ FROM alumnos A, periodalu P, se_dicta_en S WHERE
+S.suc = P.suc_period AND S.curs = P.cursoperiod AND
+S.ciclolectivo_sde = P.yearperiod AND
+P.suc_period = $P{suc_s1}
+  AND P.alum = A.dni
+AND (P.fechbaja IS NULL OR (MONTH(P.fechbaja) >= $P{mes_s1} AND YEAR(P.fechbaja) = $P{ciclolectivo_s1} AND DAY(P.fechbaja) > S.fechalimitebaja ) )
+AND P.borrado = 0 AND P.yearperiod = YEAR(CURDATE()) ORDER BY dni) AS alums
+LEFT JOIN se_dicta_en SDE ON
+alums.cursoperiod = SDE.curs LEFT JOIN (SELECT S.curs, P.apartirde, SUM(P.monto_ap) AS valorAumento,
+ P.cuota_ap
+FROM aumentos_programados P, se_dicta_en S WHERE
+S.suc = P.suc_ap  AND S.curs = P.curso_ap
+AND P.cic_lect_ap = $P{ciclolectivo_s1} AND P.cuota_ap = $P{mes_s1} AND P.suc_ap = $P{suc_s1}  GROUP BY curs) AS aumentoPorCurso
+ON SDE.curs = aumentoPorCurso.curs) AS cuotaAlumnos LEFT JOIN (SELECT B.alumno_b,SUM(B.importe_b) as importe_b, SUM(B.porcent_b) as porcent_b
+FROM bonificaciones B WHERE B.ciclo_lect_b = $P{ciclolectivo_s1} AND $P{mes_s1} BETWEEN cta_inicio_b AND cta_fin_b group by alumno_b
+) AS bonif
+ ON bonif.alumno_b = cuotaAlumnos.dni ) AS listaCtas) AS listaNeta;]]>
+	</queryString>
+	<field name="concepto" class="java.lang.String"/>
+	<field name="recEsperada" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="512" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="bd32b7b2-2576-4051-8700-93125129466c" x="14" y="20" width="166" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recaudación Esperada ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="fa0ca601-2985-43f9-8476-f1d67824f557" x="345" y="20" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getCurrencyInstance().format($F{recEsperada})]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="5a485ad0-5c55-4018-87bb-f212c6003461" x="35" y="40" width="445" height="151"/>
+				<subreportParameter name="suc_s2">
+					<subreportParameterExpression><![CDATA[$P{suc_s1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="recEsp">
+					<subreportParameterExpression><![CDATA[$F{recEsperada}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ciclolectivo_s2">
+					<subreportParameterExpression><![CDATA[$P{ciclolectivo_s1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes_s2">
+					<subreportParameterExpression><![CDATA[$P{mes_s1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ReporteIngresosMensuales_subreport1_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement uuid="16b2854f-baf8-4f07-8fcd-3fbc04ef0ca4" x="180" y="20" width="165" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{concepto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b1e48186-189f-467d-ac6f-e2f8360b1686" x="35" y="258" width="305" height="57"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Distribución del pago de la cuota en el tiempo]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="9dd9be61-98ef-4a91-8561-24ed14d730d7" x="14" y="315" width="527" height="197"/>
+				<subreportParameter name="suc_s3">
+					<subreportParameterExpression><![CDATA[$P{suc_s1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes_s3">
+					<subreportParameterExpression><![CDATA[$P{mes_s1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ciclolectivo_s3">
+					<subreportParameterExpression><![CDATA[$P{ciclolectivo_s1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="concepto_s3">
+					<subreportParameterExpression><![CDATA[$F{concepto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ReporteIngresosMensuales_subreport1_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

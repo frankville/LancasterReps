@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RecaudacionMensual_subreporte1_gastos_total" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f74b6f25-42fb-427d-bec2-4c86e6a9e184">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tot_suc_g" class="java.lang.Integer"/>
+	<parameter name="tot_mes_g" class="java.lang.String"/>
+	<parameter name="tot_year_g" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select SUM(D.importe_g) as TotGastos from recibos_egreso R inner join detalles_egreso D on
+R.idrecgasto = D.idrecgasto_dg inner join conceptos_egreso CC on D.idconcepto_dg = CC.idconcepto where
+MONTH(R.fech_g) = $P{tot_mes_g} and YEAR(R.fech_g) = $P{tot_year_g} and R.suc_g = $P{tot_suc_g}]]>
+	</queryString>
+	<field name="TotGastos" class="java.math.BigDecimal"/>
+	<variable name="tot_g_s1" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{TotGastos}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{TotGastos}]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="49345e45-5a68-4926-bf46-5fcdc5606ca4" x="27" y="0" width="123" height="28"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Egresos]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1a219f2f-aedc-466d-a218-886c19130818" x="157" y="0" width="110" height="28"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TotGastos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

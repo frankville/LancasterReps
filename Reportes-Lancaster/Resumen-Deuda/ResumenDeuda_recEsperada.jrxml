@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ResumenDeuda_recEsperada" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="51c9c0a7-a658-4f03-9e3f-af2b82af6dde">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="year2" class="java.lang.Integer"/>
+	<parameter name="mes2" class="java.lang.Integer"/>
+	<parameter name="suc2" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[{call sp_recaudacionEsperadaRS($P{year2},$P{mes2},$P{suc2})};]]>
+	</queryString>
+	<field name="result" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="26" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="5642748d-ce53-4b5a-977b-3595566b95c5" x="72" y="0" width="142" height="26"/>
+				<subreportParameter name="mes3">
+					<subreportParameterExpression><![CDATA[$P{mes2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year3">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ResumenDeuda_recEsperada_nombreCuota.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="119" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="7bf849a0-b012-4ff6-94b5-1d1affe96c7f" x="56" y="0" width="62" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Estimado]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d525dd36-bdb1-40ed-ba8a-4a5807343fc4" x="118" y="0" width="56" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{result}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="dbe1bf02-6235-41fb-8808-efa4d84610a2" x="14" y="19" width="200" height="100"/>
+				<subreportParameter name="suc3">
+					<subreportParameterExpression><![CDATA[$P{suc2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="recEsp">
+					<subreportParameterExpression><![CDATA[$F{result}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes3">
+					<subreportParameterExpression><![CDATA[$P{mes2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year3">
+					<subreportParameterExpression><![CDATA[$P{year2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ResumenDeuda_recEsperada_deudaTotal.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

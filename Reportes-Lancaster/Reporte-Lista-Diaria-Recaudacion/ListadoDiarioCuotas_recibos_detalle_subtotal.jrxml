@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDiarioCuotas_recibos_detalle_subtotal" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="1c710c5d-bbe1-49fc-be62-556c577d7081">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idreciboo" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT ((SELECT IF(SUM(L.monto)>0,SUM(L.monto),0) FROM lineasreciboctas L WHERE L.idrecib = $P{idreciboo})+(SELECT IF(SUM(LL.importe)>0, SUM(LL.importe),0) FROM lineasrecmatdid LL WHERE LL.idrec = $P{idreciboo} )) AS subtotal]]>
+	</queryString>
+	<field name="subtotal" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement uuid="cbec4b6f-60d6-4855-a11c-5ee1ba698e2a" x="5" y="6" width="142" height="28" forecolor="#B3B3B3"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="5d5e14b6-09ef-4f1e-9881-ba19f8435dfe" x="15" y="11" width="56" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[subtotal]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="19f6edf5-9e23-4de0-b06f-e08c554d3df6" x="71" y="11" width="65" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getCurrencyInstance().format($F{subtotal})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

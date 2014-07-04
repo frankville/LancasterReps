@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListaDeuda-ListaRFs" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="09d480cf-cac3-4bd0-a4a7-5997890755dc">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mysql-connection"/>
+	<parameter name="suc1" class="java.lang.Integer"/>
+	<parameter name="year1" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select T.idtutor, T.nomtut, T.aptut from deudores D inner join tutores T on D.rf = T.idtutor;]]>
+	</queryString>
+	<field name="idtutor" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomtut" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="aptut" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="138" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="30" width="554" height="100" uuid="a35c709c-1ff9-45ad-b0f1-14eeae0b95c3"/>
+				<subreportParameter name="rf1">
+					<subreportParameterExpression><![CDATA[$F{idtutor}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="suc2">
+					<subreportParameterExpression><![CDATA[$P{suc1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year2">
+					<subreportParameterExpression><![CDATA[$P{year1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["resources/subreports/ListaDeuda-DetalleRF.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="0" y="0" width="140" height="20" uuid="611867c8-da2c-4739-bba6-d53551be6e9a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsable Financiero]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="0" width="82" height="20" uuid="3bd46957-5461-44c8-bed5-9974203c496b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nomtut}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="222" y="0" width="10" height="20" uuid="63a625ad-6d2d-467c-85b8-e26bb5b9ff31"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[,]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="232" y="0" width="100" height="20" uuid="520d2776-096e-4a31-a379-8a3ecab62447"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{aptut}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="360" y="0" width="30" height="20" uuid="67c4f24f-bb93-477b-a521-82325a39ec44"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="390" y="0" width="100" height="20" uuid="bfa875c9-74e7-4a26-b2ad-22dc8cd80c49"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{idtutor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

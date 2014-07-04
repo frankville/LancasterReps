@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDeuda_listaTutores_alumnosACargo" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d5c24285-d2f4-48b9-82ba-787d50d054ef">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="rf3" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select A.dni,A.ap_al,A.nom_al from alumnos A inner join tiene_tutor T on A.dni = T.alu_tt where T.tutor_tt = $P{rf3};]]>
+	</queryString>
+	<field name="dni" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ap_al" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nom_al" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="22" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement uuid="4be82dd2-ef0b-4a71-a61f-747f3b2816b1" x="14" y="0" width="272" height="20" forecolor="#BD0000"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="1b9c5806-13c7-4c74-8020-3a2c95f3622b" x="14" y="0" width="272" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alumno(s) a cargo]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="96f842f4-f513-47c0-99b9-9c35627e2a6e" x="14" y="2" width="65" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[D.N.I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="22340577-285e-4b48-986d-1c18e636dfc4" x="79" y="2" width="102" height="22" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eecdc268-2fe1-46b3-bf4e-2a55112598e5" x="181" y="4" width="105" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement uuid="929b876b-ec87-4ad8-8b2a-a2f8ad1e6590" x="14" y="0" width="65" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0d0d41b7-8ad4-4ab2-86cc-f570dbbb8cc8" x="79" y="0" width="102" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ap_al}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b814438a-f1c5-4746-b3e2-a16f0ec5c40a" x="181" y="0" width="105" height="20" forecolor="#BBBBBB"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nom_al}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="e325c177-9614-42a5-9f6b-75e256fd3604" positionType="Float" x="19" y="24" width="260" height="1" forecolor="#BD0000"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

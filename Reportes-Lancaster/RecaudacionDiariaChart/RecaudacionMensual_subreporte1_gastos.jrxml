@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RecaudacionMensual_subreporte1_gastos" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5e371990-8674-4680-9321-ec10da819407">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mes_g" class="java.lang.Integer"/>
+	<parameter name="year_g" class="java.lang.Integer"/>
+	<parameter name="suc_g" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/RecaudacionDiariaChart/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select C.nombre, subc1.subTotGastos from conceptos_egreso C inner join
+(select CC.idconcepto, SUM(D.importe_g) as subTotGastos from recibos_egreso R inner join detalles_egreso D on
+R.idrecgasto = D.idrecgasto_dg inner join conceptos_egreso CC on D.idconcepto_dg = CC.idconcepto where
+MONTH(R.fech_g) = $P{mes_g} and YEAR(R.fech_g) = $P{year_g} and R.suc_g = $P{suc_g}
+ group by idconcepto) as subc1 on C.idconcepto = subc1.idconcepto]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="subTotGastos" class="java.math.BigDecimal"/>
+	<variable name="tot_g" class="java.math.BigDecimal" calculation="System">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a7c387d3-ef59-4f01-a176-f0c51e49b35a" x="0" y="4" width="196" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Egresos por Rubro]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="fb685907-0fa5-4ea8-b3a9-2c6dd25e104b" x="69" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0834f0b8-a034-4b4e-8335-0e0cf5cb451f" x="186" y="1" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement uuid="e9763de6-fe8d-4af2-b8a5-3e25acc96657" x="69" y="5" width="100" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72ddad8b-d4e4-4f14-80e2-d35d2c46878e" x="186" y="5" width="100" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{subTotGastos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="284" splitType="Stretch">
+			<pie3DChart>
+				<chart>
+					<reportElement uuid="d17bc6d3-a978-47d2-a458-eb09970ea089" x="83" y="40" width="374" height="222"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
+					<valueExpression><![CDATA[$F{subTotGastos}]]></valueExpression>
+				</pieDataset>
+				<pie3DPlot labelFormat="{0} {1} ({2})">
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+			<subreport>
+				<reportElement uuid="7d54f8f0-3bf0-43f6-9c9e-ffe6155e68c8" x="69" y="0" width="214" height="20"/>
+				<subreportParameter name="tot_year_g">
+					<subreportParameterExpression><![CDATA[$P{year_g}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tot_mes_g">
+					<subreportParameterExpression><![CDATA[$P{mes_g}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tot_suc_g">
+					<subreportParameterExpression><![CDATA[$P{suc_g}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="tot_g_s1" toVariable="tot_g"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "RecaudacionMensual_subreporte1_gastos_total.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RecaudacionMensual" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="50a226e7-020a-4837-a7a8-321b21e5ede1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/frank/Documentos/Sistema-Lancaster/Reportes-Lancaster/RecaudacionDiariaChart/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mes" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT S.ID_suc,S.nombre FROM sucursales S;]]>
+	</queryString>
+	<field name="ID_suc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement uuid="21949b95-b00b-4d37-ab36-2b416de1483a" x="0" y="1" width="555" height="64" forecolor="#F80303" backcolor="#F6F6FE"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="b831207f-6dbb-4c6e-9341-23f41eeb1e3c" x="440" y="16" width="98" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="6d6a9461-4baf-4465-aa4e-18f3ab42d882" x="244" y="3" width="89" height="25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Informe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="24c1e8cd-588c-4c56-aec6-b94e7f7c0f3a" x="72" y="17" width="94" height="28"/>
+				<textElement>
+					<font fontName="Fondamento" size="20"/>
+				</textElement>
+				<text><![CDATA[Lancaster]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9d1e628d-6a36-4e67-9cd6-b488e848f99f" x="210" y="27" width="152" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recaudación del mes]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="ca69c98d-875e-4232-b857-96b827d7ef66" x="440" y="16" width="98" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2ed9a407-cacb-4f5f-b6fc-f95945bf8867" x="72" y="45" width="94" height="20"/>
+				<textElement>
+					<font fontName="Fondamento" size="10"/>
+				</textElement>
+				<text><![CDATA[Institute of English]]></text>
+			</staticText>
+			<textField pattern="MMMMMMMM yyyy">
+				<reportElement uuid="63463c1a-ae40-4a81-9791-c270be2ef982" x="241" y="43" width="98" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[java.sql.Date.valueOf(Calendar.getInstance().get(Calendar.YEAR)+"-"+$P{mes}+"-01")]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="141" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="fa2a8f42-a30e-41f7-8e32-91ddd87d39c6" x="3" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Sucursal]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ecd4f130-c354-44bb-8374-d5521f5c82ae" x="103" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="099046a7-9da2-46b9-ac58-85a7ce11dcdf" x="0" y="36" width="427" height="105"/>
+				<subreportParameter name="suc_s1">
+					<subreportParameterExpression><![CDATA[$F{ID_suc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes_s1">
+					<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "RecaudacionMensual_subreporte1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

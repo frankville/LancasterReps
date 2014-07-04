@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoAlumnosPorCurso_cantAlumnsEnUnCurso" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="424e613b-bcdd-449c-95cc-c6ea8e3caf7d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="suc" class="java.lang.String"/>
+	<parameter name="curs" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT COUNT(*) AS cantalus FROM alumnos A, periodalu P WHERE A.dni = P.alum AND P.cursoperiod = $P{curs}
+ AND P.suc_period = $P{suc} AND P.yearperiod = YEAR(CURDATE()) AND P.fechbaja IS NULL AND P.borrado = 0;]]>
+	</queryString>
+	<field name="cantalus" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="576a0fd1-3fb9-417b-9d6a-fe5b1acd53f4" x="0" y="0" width="127" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de alumnos]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="19998efe-1f44-4ffb-975d-312c94a79885" x="127" y="0" width="69" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantalus}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -3,8 +3,8 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDeuda" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="302fb508-135d-42c0-a01f-0308867f8c80">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mysql-connection"/>
 	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
-	<property name="ireport.jasperserver.report.resource" value="/reports/Lancaster/ListadoDeuda_files/main_jrxml"/>
-	<property name="ireport.jasperserver.reportUnit" value="/reports/Lancaster/ListadoDeuda"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/Lancaster/ListadoDeuda/ListadoDeuda_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/Lancaster/ListadoDeuda/ListadoDeuda"/>
 	<parameter name="year" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[select S.ID_suc, S.nombre from sucursales S order by nombre]]>
@@ -122,6 +122,18 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="33" splitType="Stretch">
+			<subreport>
+				<reportElement x="248" y="0" width="306" height="30" uuid="3f11e57b-782c-499a-9060-95379c210958"/>
+				<subreportParameter name="suc3">
+					<subreportParameterExpression><![CDATA[$F{ID_suc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="year3">
+					<subreportParameterExpression><![CDATA[$P{year}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["resources/subreports/ListadoDeuda-DeudaTotal.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
 	</summary>
 </jasperReport>

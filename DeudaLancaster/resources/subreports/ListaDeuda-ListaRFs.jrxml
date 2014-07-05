@@ -2,6 +2,8 @@
 <!-- Created with Jaspersoft Studio version last-->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListaDeuda-ListaRFs" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="09d480cf-cac3-4bd0-a4a7-5997890755dc">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mysql-connection"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/Lancaster/ListadoDeuda/resources/ListaDeudaListaRFs"/>
 	<parameter name="suc1" class="java.lang.Integer"/>
 	<parameter name="year1" class="java.lang.Integer"/>
 	<queryString>
@@ -29,9 +31,9 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="138" splitType="Stretch">
+		<band height="99" splitType="Stretch">
 			<subreport>
-				<reportElement x="0" y="30" width="554" height="100" uuid="a35c709c-1ff9-45ad-b0f1-14eeae0b95c3"/>
+				<reportElement x="0" y="23" width="554" height="70" uuid="a35c709c-1ff9-45ad-b0f1-14eeae0b95c3"/>
 				<subreportParameter name="rf1">
 					<subreportParameterExpression><![CDATA[$F{idtutor}]]></subreportParameterExpression>
 				</subreportParameter>

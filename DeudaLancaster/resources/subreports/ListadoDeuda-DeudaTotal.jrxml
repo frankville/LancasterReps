@@ -2,6 +2,8 @@
 <!-- Created with Jaspersoft Studio version last-->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoDeuda-DeudaTotal" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ab125db5-fd65-4dc1-988d-e29a7c9fc7a4">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mysql-connection"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/Lancaster/ListadoDeuda/resources/ListadoDeudaDeudaTotal"/>
 	<parameter name="suc3" class="java.lang.String"/>
 	<parameter name="year3" class="java.lang.String"/>
 	<queryString language="SQL">
@@ -9,7 +11,7 @@
 	</queryString>
 	<field name="tot" class="java.lang.Double"/>
 	<background>
-		<band height="25" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band splitType="Stretch"/>
@@ -21,7 +23,7 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="50" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<rectangle radius="3">
 				<reportElement x="20" y="4" width="230" height="30" uuid="28ab12b0-bf25-40cf-bd1b-556594e1306e"/>
 				<graphicElement>
